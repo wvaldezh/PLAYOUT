@@ -1,0 +1,21 @@
+﻿@model List<PLAYOUT.Models.Domain.Programacion>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Canal</th>
+            <th>Hora</th>
+            <th>Título</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var programa in Model)
+        {
+            <tr>
+                <td>@programa.CanalName</td>
+                <td>@programa.Hora.ToString("HH:mm")</td>
+                <td>@programa.Programa</td>
+            </tr>
+        }
+    </tbody>
+</table>

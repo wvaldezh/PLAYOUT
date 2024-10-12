@@ -1,0 +1,62 @@
+﻿<div id="video-container">
+    <video class="fullscreen-video" id="video-player" controls autoplay></video>
+</div>
+<script>
+    $(document).ready(function () {
+        var listaVideos = [];
+        var indiceVideo = 0;
+        var videoPlayer = document.getElementById('video-player');
+
+        // Función para obtener la lista de videos desde el servidor
+        function obtenerListaVideos() {
+            $.ajax({
+                url: '/Video/ListaVideos', // Ruta a la acción que devuelve la lista de videos
+                method: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    listaVideos = data; // Guardar la lista de videos obtenida
+                    reproducirSiguienteVideo(); // Iniciar la reproducción del primer video
+                }
+            });
+        }
+
+        // Función para reproducir el siguiente video
+        function reproducirSiguienteVideo() {
+            if (indiceVideo < listaVideos.length) {
+                videoPlayer.src = listaVideos[indiceVideo].direccion; // Asignar la URL del video
+                videoPlayer.play();
+                indiceVideo++;
+            } else {
+                // Si se completan todos los videos, cambiar a la vista de la guía de programación
+                //cambiarVistaAGuiaProgramacion();
+                cambiarVistaAPrincipal()
+            }
+        }
+
+        // Evento que se dispara cuando el video termina
+        videoPlayer.onended = function () {
+            reproducirSiguienteVideo();
+        };
+
+        // Llamada inicial para obtener la lista de videos
+        obtenerListaVideos();
+    });
+    function cambiarVistaAGuiaProgramacion() {
+        window.location.href = '/Grilla/borrar6'; // Ruta a la vista de la guía de programación
+    }
+    
+    function cambiarVistaAPrincipal() {
+        window.location.href = '/Video/play'; // Ruta principal
+    }
+
+</script>
+<style>
+    video.fullscreen-video {
+        width: 100vw; /* Ocupa el ancho completo de la ventana */
+        height: 100vh; /* Ocupa el alto completo de la ventana */
+        object-fit: cover; /* Escala el video para cubrir toda la pantalla sin deformarlo */
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>

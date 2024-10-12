@@ -1,0 +1,40 @@
+﻿@model PLAYOUT.Models.ViewModels.CanalPrograma
+
+<div class="video-player">
+    <video id="videoPlayer" width="300" height="200" controls loop autoplay>
+        @foreach (var video in Model.musicales)
+        {
+            <source src="@video.Direccion" type="video/mp4">
+        }
+    </video>
+</div>
+
+@section Scripts {
+    <script>
+        // Script para manejar la reproducción continua en bucle de los videos
+        var videoPlayer = document.getElementById("videoPlayer");
+        var sources = videoPlayer.getElementsByTagName("source");
+        var currentSourceIndex = 0;
+
+        videoPlayer.addEventListener("ended", function () {
+            currentSourceIndex++;
+            if (currentSourceIndex >= sources.length) {
+                currentSourceIndex = 0;
+            }
+            videoPlayer.src = sources[currentSourceIndex].src;
+            videoPlayer.play();
+        });
+    </script>
+}
+
+<style>
+    .video-player {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        background-color: #000;
+        padding: 5px;
+        border-radius: 5px;
+    }
+</style>

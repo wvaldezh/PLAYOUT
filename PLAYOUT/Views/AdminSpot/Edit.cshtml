@@ -1,0 +1,89 @@
+﻿@model PLAYOUT.Models.ViewModels.EditSpotRequest
+
+
+<div class="bg-secondary bg-opacity-10 py-5">
+    <div class="container">
+        <h1>Editar Spot</h1>
+
+    </div>
+
+</div>
+<div class="container py-5">
+    @if (Model != null)
+    {
+        <form id="imageForm" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Id</label>
+                <input type="text" class="form-control" id="id" asp-for="Id" readonly />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Titulo</label>
+                <input type="text" class="form-control" id="titulo" asp-for="Titulo" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Direccion</label>
+                <input type="text" class="form-control" id="direccion" asp-for="Direccion" readonly/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Orden</label>
+                <input type="text" class="form-control" id="orden" asp-for="Orden" readonly />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fecha de Entrada</label>
+                <input class="form-control" id="fechaEntrada" asp-for="FechaEntrada" readonly />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fecha de Salida</label>
+                <input class="form-control" id="fechaSalida" asp-for="FechaSalida" />
+            </div>
+            <div class="mb-3">
+                <label for="videoFile">Archivo de Video</label>
+                <input type="file" class="form-control" id="videoFile" name="videoFile" />
+            </div>
+           
+            <div class="mb-3 d-flex">
+                <button type="submit" class="btn btn-dark">Update</button>
+                <button type="submit" class="btn btn-danger ms-2" asp-controller="AdminSpot" asp-action="Delete">Delete</button>
+
+            </div>
+        </form>
+
+    }
+    else
+    {
+        <p>no se encontro canales</p>
+    }
+
+</div>
+<script>
+    const feturedUploadElement = document.getElementById("imageInput");
+    document.getElementById('imageInput').addEventListener('change', function (event) {
+        if (event.target.files && event.target.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = document.getElementById('imageDisplay');
+                img.src = e.target.result;
+                img.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+
+    async function uploadImage() {
+        var formData = new FormData(document.getElementById('imageForm'));
+        var fileInput = document.getElementById('imageInput');
+        formData.append("image", fileInput.files[0]);
+
+        fetch('/Home/UploadImage', {
+            method: 'POST',
+            body: formData
+        }).then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+    }
+    feturedUploadElement.addEventListener("change", uploadImage);
+</script>
+

@@ -1,0 +1,42 @@
+﻿@model PLAYOUT.Models.ViewModels.Borrar
+<div id="texto"></div>
+<script>
+    $(document).ready(function () {
+        let contenedorTexto = document.getElementById("texto");
+        var canales = [];
+        var canalActualIndex = 0;
+        var index = 0;
+
+        // Obtener la lista de canales con programación
+        var canales = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.canalViewModels));
+        //url: '@Url.Action("GetCanalesConProgramacion", "Grilla")',
+        //type: 'GET',
+        console.log(canales.length);
+        // canales = data;
+        cargarCanalActual();
+        function cargarCanalActual() {
+            if (canales.length > 0) {
+
+                window.location.href = '/Grilla/borrar6'; // Ruta a la vista de la guía de programación
+            }
+            else {
+                $.ajax({
+                    url: '/Video/ListaVideos', // Ruta a la acción que devuelve la lista de videos
+                    method: 'GET',
+                    success: function (data) {
+                        console.log(data.length);
+                        //listaVideos = data; // Guardar la lista de videos obtenida
+                        // reproducirSiguienteVideo(); // Iniciar la reproducción del primer video
+                        if (data.length > 0) {
+                            window.location.href = '/Video/Spots'; // Ruta a la vista de videos
+                        }
+                        else {
+                            contenedorTexto.innerHTML = "<p>No HAY Canales con Guia de Programacion Actual ni Spots</p>";
+                        }
+                    }
+                });
+
+            }
+        }
+    });
+</script>

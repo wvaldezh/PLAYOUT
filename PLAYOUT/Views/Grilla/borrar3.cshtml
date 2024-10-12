@@ -1,0 +1,67 @@
+﻿@model PLAYOUT.Models.ViewModels.Borrar
+
+<div id="canal-info">
+    <!-- Aquí se cargará la información del canal dinámicamente -->
+</div>
+
+
+
+@section Scripts {
+    <script>
+        var canales = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.canalViewModels));
+        var currentCanalIndex = 0;
+        //console.log(canales);
+
+        function mostrarCanal(canal) {
+            console.log(canal);
+            if (canal && canal.programas && canal.programas.length > 0) {
+                var html = `
+                            <div>
+                                <img src="${canal.logoUrl}" alt="${canal.nombre}" style="width: 100px;" />
+                                <h2>${canal.nombre}</h2>
+                                <ul>
+                                    ${canal.programas.map(p => `
+                                        <li>${new Date(p.horaDeEmision).toLocaleTimeString()} - ${p.tituloDePrograma}</li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        `;
+            } else {
+                // Manejo en caso de que no haya programas para mostrar
+                console.log("direccion imagen:" + canal.logoUrl);
+                var html = `
+                            <div>
+                                <img src="${canal.logoUrl}" alt="${canal.nombre}" style="width: 100px;" />
+                                <h2>${canal.nombre}</h2>
+                                <p>No hay programación disponible.</p>
+                            </div>
+                        `;
+            }
+
+            document.getElementById("canal-info").innerHTML = html;
+        }
+
+        function cargarCanal() {
+            var canalId = canales[currentCanalIndex].CanalID;
+            console.log("canal ID:" + canalId);
+
+            $.getJSON('/Grilla/ObtenerCanalProgramacion', { canalId: canalId }, function (data, jsonStatus, jqHXR) {
+                console.log(data);
+                console.log(jsonStatus);
+                console.log(jqHXR);
+                mostrarCanal(data);
+                // console.log(data);
+                currentCanalIndex++;
+                if (currentCanalIndex >= canales.length) {
+                    currentCanalIndex = 0;
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            cargarCanal(); // Cargar el primer canal al cargar la página
+            setInterval(cargarCanal, 30000); // Cambiar de canal cada 30 segundos
+        });
+        
+    </script>
+}

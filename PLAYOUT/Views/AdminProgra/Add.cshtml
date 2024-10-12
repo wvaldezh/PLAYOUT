@@ -1,0 +1,33 @@
+﻿@model PLAYOUT.Models.ViewModels.InputModel 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ingreso de Datos</title>
+</head>
+<body>
+    <h2>Datos</h2>
+    <form asp-action="Add" method="post">
+        <div class="mb-3">
+            <label class="form-label">Canal</label>    
+            <input type="Text" id="canal" class="form-control" asp-for="Canal" readonly />
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label" hidden>CanalID</label>
+            <input type="Text" id="canalId" readonly class="form-control" asp-for="CanalId" hidden/>
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Fecha</label>    
+            <input type="datetime" id="datetonly" class="form-control" asp-for="dateOnly" readonly />
+
+        </div>
+        <textarea name="MultilineData" rows="10" cols="50">@Model.MultilineData</textarea>
+        <br />
+
+        
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+</body>
+</html>

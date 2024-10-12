@@ -1,0 +1,39 @@
+﻿@model PLAYOUT.Models.ViewModels.DayProgramRequest
+
+<div class="bg-secondary bg-opacity-10 py-5">
+    <div class="container">
+        <h1>Programacion</h1>
+
+    </div>
+
+</div>
+<div class="container py-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Hora</td>
+                <td>Canal</td>
+                <td>Programacion</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var progra in Model.programacions)
+            {
+                <tr>
+                    <td>@progra.Hora</td>
+                    <td>@progra.CanalName</td>
+                    <td>@progra.Programa</td>
+                    <td>
+                        <a asp-area=""
+                           asp-controller="AdminBlogPosts"
+                           asp-action="Edit"
+                           asp-route-id="@progra.Id">Edit</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+
+</div>

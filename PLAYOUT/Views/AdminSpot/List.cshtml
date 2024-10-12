@@ -1,0 +1,40 @@
+﻿@model List<PLAYOUT.Models.Domain.Spot>
+
+<div class="bg-secondary bg-opacity-10 py-5">
+    <div class="container">
+        <h1>TODOS LOS Spots</h1>
+
+    </div>
+
+</div>
+<div class="container py-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Nombre</td>
+                <td>Fecha de Salida</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var spot in Model)
+            {
+                <tr>
+                    <td>@spot.Id</td>
+                    <td>@spot.Titulo</td>
+                    <td>@spot.FechaSalida</td>
+                    <td>
+                        <a asp-area=""
+                           asp-controller="AdminSpot"
+                           asp-action="Edit"
+                           asp-route-id="@spot.Id">Edit</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+
+</div>

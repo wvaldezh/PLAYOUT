@@ -1,0 +1,36 @@
+﻿@model PLAYOUT.Models.ViewModels.AddSpotRequest
+
+@{
+    ViewData["Title"] = "Subir Spots";
+}
+
+
+
+<form asp-action="Add" method="post" enctype="multipart/form-data">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h2>Subir Video Spot</h2>
+            <div class="mb-3">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="FechaSalida" class="control-label"></label>
+                <input asp-for="FechaSalida" class="form-control" />
+                <span asp-validation-for="FechaSalida" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="videoFile">Archivo de Video</label>
+                <input type="file" class="form-control" id="videoFile" name="videoFile" />
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Subir" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </div>
+
+
+</form>

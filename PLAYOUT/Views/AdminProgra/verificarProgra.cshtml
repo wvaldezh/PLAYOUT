@@ -1,0 +1,50 @@
+﻿@model PLAYOUT.Models.ViewModels.VerifyAddProgra
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ingreso de datos de canal</title>
+</head>
+<body>
+    <div class="row justify-content-center">
+        <div class="col-4">
+    <h2>Ingrese Datos</h2>
+    <form asp-action="verificarProgra" method="post">
+        <br />
+        <div class="mb-3">
+            <label class="form-label">Nombre de Canal</label>
+            </select>
+            <select  asp-for="SelectedCanal" required>
+                <option value="">-- Seleccione el canal --</option>
+                @foreach (var element in Model.Canales)
+                
+                {
+                    <option value='{"Id": "@element.Value", "Name":"@element.Text"}'>@element.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Fecha de publicacion </label>
+            <input type="date" min="@DateTime.Now" max="@DateTime.Now " class="form-control" id="publishedDate" asp-for="dateOnly" />
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+    </div>
+    </div>
+</body>
+</html>
+<script>
+    // Obtenemos el campo de fecha
+    const inputFecha = document.getElementById("publishedDate");
+
+    // Creamos un objeto Date para obtener la fecha actual
+    const fechaActual = new Date();
+
+    // Formateamos la fecha actual en el formato YYYY-MM-DD que requiere el input date
+    const dia = String(fechaActual.getDate()).padStart(2, '0');
+    const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // Los meses en JavaScript empiezan en 0
+    const anio = fechaActual.getFullYear();
+
+    // Establecemos la fecha actual en el campo de fecha
+    inputFecha.value = `${anio}-${mes}-${dia}`;
+</script>

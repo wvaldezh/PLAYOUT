@@ -1,0 +1,185 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = PLAYOUT
+build_property.RootNamespace = PLAYOUT
+build_property.ProjectDir = C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminCanal/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYW5hbFxBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminCanal/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYW5hbFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminCanal/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYW5hbFxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminCanal/subida.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYW5hbFxzdWJpZGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminCanal/UpdateOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYW5hbFxVcGRhdGVPcmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminCanal/UploadImage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYW5hbFxVcGxvYWRJbWFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminMusical/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5NdXNpY2FsXEFkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminMusical/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5NdXNpY2FsXExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminMusical/_parcial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5NdXNpY2FsXF9wYXJjaWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminProgra/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9ncmFcQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminProgra/dayProgramResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9ncmFcZGF5UHJvZ3JhbVJlc3VsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminProgra/verificarProgra.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9ncmFcdmVyaWZpY2FyUHJvZ3JhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminSpot/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5TcG90XEFkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminSpot/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5TcG90XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminSpot/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5TcG90XExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/AdminSpot/UpdateOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5TcG90XFVwZGF0ZU9yZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/borrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXGJvcnJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/borrar2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXGJvcnJhcjIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/borrar3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXGJvcnJhcjMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/borrar4.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXGJvcnJhcjQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/borrar5.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXGJvcnJhcjUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/borrar6.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXGJvcnJhcjYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/Canal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXENhbmFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/canalShow.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXGNhbmFsU2hvdy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/SinProgramacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXFNpblByb2dyYW1hY2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/VideoMusical.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXFZpZGVvTXVzaWNhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/_ProgramacionPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXF9Qcm9ncmFtYWNpb25QYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Grilla/_ProgramasPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JpbGxhXF9Qcm9ncmFtYXNQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Shared/_MiPrimeraVistaParcial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NaVByaW1lcmFWaXN0YVBhcmNpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Shared/_parcial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9wYXJjaWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Shared/_VideoMusPlayer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WaWRlb011c1BsYXllci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Shared/_VideoMusPlayerb.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WaWRlb011c1BsYXllcmIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Video/play.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlkZW9ccGxheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Video/Spots.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlkZW9cU3BvdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Cabe/source/repos/PLAYOUT/PLAYOUT/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-cpzkbpbqhq

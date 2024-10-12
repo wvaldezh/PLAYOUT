@@ -1,0 +1,38 @@
+﻿@model List<PLAYOUT.Models.Domain.Canal>
+
+<div class="bg-secondary bg-opacity-10 py-5">
+    <div class="container">
+        <h1>TODOS LOS CANALES</h1>
+
+    </div>
+
+</div>
+<div class="container py-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>CANAL</td>     
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var canal in Model)
+            {
+                <tr>
+                    <td>@canal.Id</td>
+                    <td>@canal.Name</td>      
+                    <td>
+                        <a asp-area=""
+                           asp-controller="AdminCanal"
+                           asp-action="Edit"
+                           asp-route-id="@canal.Id">Edit</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+
+</div>

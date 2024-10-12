@@ -1,0 +1,46 @@
+﻿@using System.Text.Json;
+@model List<PLAYOUT.Models.Domain.Programacion>
+
+@{
+    ViewData["Title"] = "Programación del Canal";
+    var canales = ViewBag.Canales as List<PLAYOUT.Models.Domain.Canal>;
+    var index = ViewBag.Index as int?;
+}
+
+<h2>@ViewData["Title"] - Canal @ViewBag.Name</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Canal</th>
+            <th>Hora</th>
+            <th>Título</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var programa in Model)
+        {
+            <tr>
+                <td>@programa.CanalName</td>
+                <td>@programa.Hora.ToString("HH:mm")</td>
+                <td>@programa.Programa</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Añadir un contenedor para almacenar los datos de los canales -->
+<div id="canalesData" data-canales="@Html.Raw(JsonSerializer.Serialize(canales))" data-index="@index"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        setTimeout(function () {
+            var canalesData = $('#canalesData').data('canales');
+            var index = $('#canalesData').data('index');
+            var canales = JSON.parse(canalesData);
+            var nextIndex = (index + 1) % canales.length;
+            var nextCanalId = canales[nextIndex].id;
+            window.location.href = '@Url.Action("Canal", "Grilla")' + '?id=' + nextCanalId + '&index=' + nextIndex;
+        }, 30000); // 30 segundos = 30000 ms
+    });
+</script>

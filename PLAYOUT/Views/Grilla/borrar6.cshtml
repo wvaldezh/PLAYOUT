@@ -1,0 +1,577 @@
+﻿@model PLAYOUT.Models.ViewModels.Borrar
+@{
+    ViewData["Title"] = "Guía de Programación";
+}
+ <!--
+<div class="programa-container">
+    <div class="canal-info">
+        
+        
+    </div>
+   
+    <div class="programas">
+        <ul id="listaProgramacionXXX"></ul>
+    </div>
+
+    
+</div>
+-->
+<div class="wrapper">
+    <div class="canal">
+       <span id="canalNombre"></span>
+    </div>
+    <div class="logo">
+        <img id="canalLogo" src="" alt="Logo del canal" class="cover2" />
+    </div>
+    <div class="tvguia">TV GUIA  COMTECO</div>
+    <!-- <div class="fechalbl">FECHA DE HOY</div> -->
+    <div class="fecha">
+        <span id="fechaActual"></span>
+    </div>
+   <!--  <div class="horaactuallbl">HORA  ACTUAL
+    </div>
+     -->
+    <div class="horaactual">
+        <span id="horaActual"></span>
+        </div>
+    <div class="videomusical">
+        <div class="video-player">
+            <video id="videoPlayer" width="800" height="355" controls autoplay muted playsinline>
+                <source id="videoSource" src="@Model.musicalesbo.FirstOrDefault()?.Direccion" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    <div class="horaprogramalbl">HORA</div>
+    <div class="horaprograma">
+        <ul id="listaProgramacionHora"></ul>
+    </div>
+    <div class="programalbl">TITULO</div>
+    <div class="programa">
+        <ul id="listaProgramacionTitulo"></ul>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var canales = [];
+            var canalActualIndex = 0;
+            var index = 0;
+
+            // Obtener la lista de canales con programación
+            var canales = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.canalViewModels));
+            var spots = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.spots));//nuevo
+                //url: '@Url.Action("GetCanalesConProgramacion", "Grilla")',
+                //type: 'GET',
+            console.log(canales);
+            console.log(spots);
+                   // canales = data;
+                 cargarCanalActual();
+            function cargarCanalActual() {
+                if (canales.length > 0) {
+                    var canalId = canales[canalActualIndex].CanalID;
+                    console.log(canalId);
+
+                    // Obtener la programación del canal actual
+                    $.ajax({
+                        url: '@Url.Action("ObtenerCanalProgramacion", "Grilla")',
+                        type: 'GET',
+                        data: { canalId: canalId },
+                        success: function (data) {
+                            console.log(data);
+                            $('#canalLogo').attr('src', data.logoUrl);
+                            $('#canalNombre').text(data.nombre);
+
+                            // Limpiar la lista de programación anterior
+                            $('#listaProgramacion').empty();
+                            $('#listaProgramacionHora').empty();
+                            $('#listaProgramacionTitulo').empty();
+                            
+                            // Cargar los programas
+                            data.programas.forEach(function (programa) {
+                                //convertir formato hora inicio
+                                var horaDeEmision = new Date(programa.horaDeEmision);
+                                var horaDeEmisionok = new Date(programa.horaDeEmision).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+
+                                //convertir formato hora fin
+                                /*
+                                var $programaItem = $('<li class="programa-item"></li>');
+                                $programaItem.html('<span class="hora-emision">' + horaDeEmisionok + '</span> - <span class="titulo-programa">' + programa.tituloDePrograma + '</span>');
+                                $('#listaProgramacion').append($programaItem);
+                                */
+                                //borrar inicio
+                                /*
+                                var $programaItemHora = $('<li class="programa-item-hora"></li>');
+                                $programaItemHora.html('<span class="hora-emision-2">' + horaDeEmisionok +);
+                                $('#listaProgramacionHora').append($programaItemHora);
+                                */
+                                //borrar fin
+
+                                //borrar 2 inicio
+                                var $programaItem = $('<li class="programa-item"></li>');
+                                $programaItem.html('<span class="titulo-programa" > ' + programa.tituloDePrograma);
+                                $('#listaProgramacionTitulo').append($programaItem);
+                                //borrar 2 fin
+                                //borrar 3 inicio
+                                var $programaItemH = $('<li class="item-hora"></li>');
+                                $programaItemH.html('<span class="hora-emision" > ' + horaDeEmisionok);
+                                $('#listaProgramacionHora').append($programaItemH);
+                                //borrar 3 fin
+                                // Aplicar desplazamiento si el texto es largo
+                                ajustarDesplazamiento($programaItem.find('.titulo-programa'));
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error al obtener la programación: ", error);
+                        }
+                    });
+
+                    // Cambiar al siguiente canal después de 30 segundos
+                    canalActualIndex = (canalActualIndex +1) % canales.length;
+                    
+                    console.log("canalactualindex:" + canalActualIndex);
+                    console.log("canal.Lenght:" + canales.length);
+                    console.log("index: " + index);
+                    console.log("spots.lenght" + spots.length);
+
+                    setTimeout(cargarCanalActual, 30000);
+
+                    if (index >= canales.length) {
+                        if (spots.length > 0) {
+                            console.log("spots.lenght" + spots.length);
+                            window.location.href = '/Video/Spots'; // Ruta a la vista de videos
+                        }
+                        else {
+                            window.location.href = '/Video/play'; // Ruta principal
+                        }
+                        /*$.ajax({
+                            url: '/Video/ListaVideos', // Ruta a la acción que devuelve la lista de videos
+                            method: 'GET',
+                            success: function (data) {
+                                console.log(data.length);
+                                //listaVideos = data; // Guardar la lista de videos obtenida
+                                // reproducirSiguienteVideo(); // Iniciar la reproducción del primer video
+                                if (data.lenght > 0) {
+                                    window.location.href = '/Video/Spots'; // Ruta a la vista de videos
+                                }
+                                else
+                                {
+                                    window.location.href = '/Video/play'; // Ruta principal
+                                }
+                            }
+                        });
+                        */
+                        //window.location.href = '/Video/Spots'; // Ruta a la vista de videos
+                    }
+                    index++;
+                }
+            }
+
+            function ajustarDesplazamiento($elemento) {
+                
+                var containerWidth = $('.programa-item').width();
+                console.log(containerWidth);
+                console.log($elemento);
+                var textoWidth = $elemento.width();
+                var textotamano = $elemento[0].scrollWidth;
+                console.log("ancho del contenedor: "+textoWidth);
+                console.log("tamaño de texo: " + textotamano);
+
+                if (textoWidth > containerWidth) {
+                    $elemento.addClass('scrolling');
+                    var distance = textoWidth + containerWidth;
+
+                    function scrollText() {
+                        $elemento.animate({ left: -distance }, textoWidth * 10, 'linear', function () {
+                            $elemento.css('left', containerWidth);
+                            scrollText();
+                        });
+                    }
+
+                    scrollText();
+                } else {
+                    $elemento.css('left', '0');
+                }
+                
+               /*
+               //opcion 2 inicio
+                var textoWidth = $elemento[0].scrollWidth; // Ancho real del texto
+                var containerWidth = $elemento.parent().width(); // Ancho del contenedor
+
+                if (textoWidth > containerWidth) {
+                    // Aplicar desplazamiento basado en el tamaño del texto
+                    var tiempoDesplazamiento = (textoWidth / containerWidth) * 10 * 1000; // Proporcional al tamaño del texto
+
+                    $elemento.css({ position: 'relative', whiteSpace: 'nowrap' });
+
+                    $elemento.animate({ left: -textoWidth }, tiempoDesplazamiento, 'linear', function () {
+                        $elemento.css('left', containerWidth); // Reiniciar después del desplazamiento
+                        ajustarDesplazamiento($elemento); // Reiniciar el desplazamiento
+                    });
+                }
+                //opcion 2 fin
+                */
+               /*
+               //opcion 3 inicio
+                var textoWidth = $elemento[0].scrollWidth; // Ancho total del texto real
+                var containerWidth = $elemento.parent().width(); // Ancho del contenedor
+
+                if (textoWidth > containerWidth) {
+                    // Aplicar desplazamiento basado en el tamaño del texto
+                    var tiempoDesplazamiento = (textoWidth + containerWidth) * 15; // Ajustar el tiempo basado en el ancho del texto
+
+                    // Iniciar desplazamiento de derecha a izquierda
+                    $elemento.css({
+                        position: 'relative',
+                        whiteSpace: 'nowrap',
+                        left: containerWidth // Empieza desde el borde derecho del contenedor
+                    });
+
+                    // Animación de desplazamiento
+                    $elemento.animate(
+                        { left: -textoWidth }, // Desplazar completamente hasta el final del texto
+                        tiempoDesplazamiento,  // Duración proporcional al tamaño
+                        'linear',              // Desplazamiento suave
+                        function () {
+                            // Reiniciar posición después del desplazamiento
+                            $elemento.css('left', containerWidth);
+                            ajustarDesplazamiento($elemento); // Reiniciar la animación
+                        }
+                    );
+                } else {
+                    // Si el texto no necesita desplazarse, asegurarse de que esté centrado
+                    $elemento.css('left', '0');
+                }
+
+               // opcion 3 fin
+               */
+            }
+                //bloque de datos de tiempo inicio
+                function actualizarHoraActual() {
+                    var ahora = new Date();
+                    var horas = ahora.getHours().toString().padStart(2, '0');
+                    var minutos = ahora.getMinutes().toString().padStart(2, '0');
+                    var segundos = ahora.getSeconds().toString().padStart(2, '0');
+                // Obtener día de la semana y mes en español usando toLocaleDateString
+                var opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long' };
+                var fechaFormateada = ahora.toLocaleDateString('es-ES', opcionesFecha); // Día y mes en español
+                $('#fechaActual').text(fechaFormateada);
+
+                    var horaFormateada = horas + ':' + minutos + ':' + segundos;
+                    $('#horaActual').text(horaFormateada);
+                }
+
+
+
+                //bloque de datos de tiempo fin
+            // Actualizar la hora actual inmediatamente al cargar la página
+            actualizarHoraActual();
+
+            // Actualizar la hora cada segundo
+            setInterval(actualizarHoraActual, 1000);
+            // $('#horaactual') = horaactual;
+        });
+        //bloque de video musical inicio
+        var videoPlayer = document.getElementById("videoPlayer");
+        var videoSource = document.getElementById("videoSource");
+
+        // Lista de URLs de videos en JavaScript
+        var videos = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.musicalesbo.Select(v => v.Direccion).ToList()));
+        var currentIndex = 0;
+
+        // Función para cargar y reproducir el siguiente video
+        function playNextVideo() {
+            currentIndex++;
+            if (currentIndex >= videos.length) {
+                currentIndex = 0;
+            }
+            videoSource.src = videos[currentIndex];
+            videoPlayer.load();
+            videoPlayer.play();
+        }
+
+        // Evento para reproducir el siguiente video cuando termine el actual
+        videoPlayer.addEventListener("ended", playNextVideo);
+
+        // Guardar estado de video y tiempo en localStorage
+        window.addEventListener("beforeunload", function () {
+            localStorage.setItem('currentVideoIndex', currentIndex);
+            localStorage.setItem('videoTime', videoPlayer.currentTime);
+        });
+
+        // Restaurar estado del video al recargar la página
+        window.addEventListener("load", function () {
+            var savedIndex = localStorage.getItem('currentVideoIndex');
+            var savedTime = localStorage.getItem('videoTime');
+
+            if (savedIndex !== null) {
+                currentIndex = parseInt(savedIndex);
+                videoSource.src = videos[currentIndex];
+                videoPlayer.load();
+                if (savedTime !== null) {
+                    videoPlayer.currentTime = parseFloat(savedTime);
+                }
+                videoPlayer.play();
+            }
+        });
+
+        //bloke 2 fin
+        // Quitar el silencio (muted) automáticamente cuando se cargue la página
+        document.addEventListener("DOMContentLoaded", function () {
+            var video = document.getElementById("videoPlayer");
+
+            // Verificar si el video está silenciado y quitar el silencio
+            if (video.muted) {
+                video.muted = false;
+                video.play();
+            }
+        });
+                        //bloque de video musical fin
+        
+
+    </script>
+}
+<style>
+    .programa-container {
+        width: 100%;
+        max-height: 800px;
+        overflow: hidden;
+        background-color: #01073d;
+        color: white;
+        padding: 20px;
+    }
+
+    .canal-info {
+        display: flex;
+        align-items: center;
+    }
+    /*
+    #canalLogo {
+        width: 200px;
+        height: auto;
+        margin-right: 20px;
+        font-size: 30px;
+    }
+    */
+    #canalNombre {
+       
+       /*margin-right: 20px; */
+        font-size: 30px;
+        text-align: center;
+       
+    }
+
+    img.cover {
+       
+        width: 100%; /* Ancho del contenedor */
+        height: 100%; /* Alto del contenedor */
+        object-fit: cover; /* Escala la imagen para cubrir el contenedor manteniendo proporciones */
+       
+    }
+
+    img.cover2 {
+        width: 465px; /* Ancho fijo */
+        height: 294px; /* El alto se ajusta automáticamente para mantener las proporciones */
+       
+    }
+
+    .programas {
+        margin-top: 20px;
+        font-size: 50px;
+    }
+
+    #listaProgramacion {
+        list-style: none;
+        padding: 0;
+    }
+
+    .programa-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+      /*  overflow: hidden; /* Oculta el texto que sale del contenedor */
+        position: relative;
+    }
+
+    .item-hora {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+
+    .hora-emision {
+        flex-shrink: 0;
+        width: 100px;
+    }
+
+    .hora-emision-2 {
+        flex-shrink: 0;
+        width: 100px;
+    }
+
+    
+    .titulo-programa {
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    
+    /*
+    .titulo-programa {
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+    }
+     */
+
+        .titulo-programa.scrolling {
+            position: absolute;
+            left: 100%;
+        }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-gap: 2px;
+        grid-auto-rows: minmax(50px, 17fr);
+    }
+
+    .canal {
+        display: grid;
+        grid-column: 1 / 3;
+        grid-row: 1;
+        /*  border: black 5px solid;*/
+        text-align:center;
+        background-color: #02231f;
+        color: white;
+        font: impact;
+        font-weight: bold;
+        align-items: center;
+    }
+        
+
+
+    .logo {
+        grid-column: 1 / 3;
+        grid-row: 2 / 6;
+        /* border: black 5px solid;*/
+        /*text-align: center;*/
+        background-color: black;
+    }
+
+    .tvguia {
+        grid-column: 3 / 5;
+        grid-row: 1 / 3;
+        /*  border: black 5px solid;*/
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        background-color: #dd1602;
+        color:white;
+    }
+    /*
+        .fechalbl {
+        grid-column: 3 / 5;
+        grid-row: 2;
+         border: black 5px solid;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #3b3636;
+        color: white;
+    }
+    */
+    .fecha {
+        grid-column: 3 / 5;
+        grid-row: 3 / 5;
+       /* border: black 5px solid;*/
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+    }
+    /*
+    .horaactuallbl {
+        grid-column: 3 / 5;
+        grid-row: 4;
+         border: black 5px solid;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #3b3636;
+        color: white;
+        
+    }
+        */
+    .horaactual {
+        grid-column: 3 / 5;
+        grid-row: 5;
+        /* border: black 5px solid;*/
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+    }
+
+    .videomusical {
+        grid-column: 5 / 9;
+        grid-row: 1 / 6;
+        border: black 5px solid;
+        background-color:black;
+        text-align: center;
+    }
+
+    .horaprogramalbl {
+        grid-column: 1;
+        grid-row: 6;
+        /* border: black 5px solid;*/
+        text-align: center;
+        font-size: 50px;
+        background-color: #02231f;
+        color: white;
+        font: impact;
+        font-weight: bold;
+    }
+
+    .horaprograma {
+        grid-column: 1;
+        grid-row: 7 / 18;
+       /* border: black 5px solid; */
+        text-align: right;
+        font-size: 65px;
+        background-color: #040116;
+        color: white;
+        font: impact;
+        font-weight: bold;
+    }
+
+    .programalbl {
+        grid-column: 2 / 9;
+        grid-row: 6;
+        /*  border: black 5px solid;*/
+        text-align: center;
+        font-size: 50px;
+        background-color: #02231f;
+        color: white;
+        font: impact;
+        font-weight: bold;
+    }
+
+    .programa {
+        grid-column: 2 / 9;
+        grid-row: 7 / 18;
+       /* border: black 5px solid;*/
+        text-align: center;
+        font-size: 65px;
+        background-color: #040116;
+        color:white;
+        font:impact;
+        font-weight: bold;
+    }
+
+</style>

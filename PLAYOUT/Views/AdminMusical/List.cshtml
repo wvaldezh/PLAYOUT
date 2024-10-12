@@ -1,0 +1,49 @@
+﻿@model List<PLAYOUT.Models.Domain.Musical>
+
+<div class="bg-secondary bg-opacity-10 py-5">
+    <div class="container">
+        <h1>Lista de Videos Musicales</h1>
+
+    </div>
+
+</div>
+
+<div class="container py-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Titulo</td>
+                <td>Fecha de Salida</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var VidMusical in Model)
+            {
+                <tr>
+                    <td>@VidMusical.Id</td>
+                    <td>@VidMusical.Titulo</td>
+                    <td>@VidMusical.FechaSalida </td>
+                    <td>
+                        <a asp-area=""
+                           asp-controller="AdminMusical"
+                           asp-action="Edit"
+                           asp-route-id="@VidMusical.Id">Edit</a>
+                    </td>
+                    <td>
+                        <form asp-action="Delete" method="post" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este video?');">
+                            <input type="hidden" name="id" value="@VidMusical.Id" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                    
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+
+
+</div>

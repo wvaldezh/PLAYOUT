@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Add New Tag - Admin Funcionality</h1>
+
+    </div>
+
+</div>
+<div class="container py-5">
+    <form method="post" id="imageForm" enctype="multipart/form-data">
+        <div>
+            <input type="file" id="imageInput"  class ="form-control" accept="image/*" />
+            <img id="imageDisplay" src="" alt="Selected Image" style="display:none; max-width: 100%;" />
+            <button type="button" onclick="uploadImage()">Upload Image</button>
+        </div>
+        <div class="mb-3">
+            <button type="submit" onclick="uploadImage()" class="btn btn-dark">Submit</button>
+        </div>
+    </form>
+
+</div>
+<script>
+    document.getElementById('imageInput').addEventListener('change', function (event) {
+        if (event.target.files && event.target.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = document.getElementById('imageDisplay');
+                img.src = e.target.result;
+                img.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+
+    async function uploadImage() {
+        var formData = new FormData(document.getElementById('imageForm'));
+        var fileInput = document.getElementById('imageInput');
+        formData.append("image", fileInput.files[0]);
+
+        fetch('/Home/UploadImage', {
+            method: 'POST',
+            body: formData
+        }).then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+    }
+</script>
