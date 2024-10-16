@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using PLAYOUT.Models.Domain;
 using PLAYOUT.Models.ViewModels;
 using PLAYOUT.Repositories;
@@ -223,5 +224,28 @@ namespace PLAYOUT.Controllers
             return Ok(new { message = "Order updated successfully" });
             return View();
         }
+        /*
+        public async Task<IActionResult> autodelete()
+        {
+            var listSpotsVencidos = await _spotRepository.GetAllExpiredAsync(); 
+            if(listSpotsVencidos != null)
+            {
+                foreach(var spot in listSpotsVencidos)
+                {
+                    // Elimina el archivo de video del servidor
+                    var filePath = Path.Combine(_hostingEnvironment.WebRootPath, spot.Direccion.TrimStart('/'));
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+
+                    // Elimina el registro de la base de datos
+                     await _spotRepository.DeleteAsync(spot.Id);
+
+                }
+            }
+            return null;
+        }
+        */
     }
 }

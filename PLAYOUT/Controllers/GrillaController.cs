@@ -19,61 +19,10 @@ namespace PLAYOUT.Controllers
             _programacionService = programacionService;
             _spotRepository = spotRepository;
         }
-        /*
-        public async Task<IActionResult> Canal(Guid id)
-        {
-            var programas = await _programacionRepository.GetDayPartialPrograAsync(id);
-            return View(programas);
-        }
-        public async Task<IActionResult> ObtenerProgramas(string canal)
-        {
-            var programas = await _programaService.ObtenerProgramasPorCanalAsync(canal);
-            return PartialView("_ProgramasPartial", programas);
-        }
-        */
-        /*
-        public async Task<ActionResult> GrillaActual()
-        {
-            // fechaRef
-            //var FechaRef = DateTime.Parse("20/07/2024");
-           // var AllDayPrograms = new List<IEnumerable<Programacion>>();
-           // var ListDayPrograms = new List<IEnumerable<programModel>>();
-            // var AllDayProgramsOb = new programModel();
-            //verificar si existen canales 
-            var ListaCanales = await _canalRepository.GetAllAsync();
-            if(ListaCanales != null)
-            {
-                foreach(var canales in ListaCanales)
-                {
-                    // verificar si existen preogramacion en esos canales
-                    var programas = await _programacionRepository.GetDayPartialPrograAsync(canales.Id);
-                    if (programas != null)
-                    {
-                        ListDayPrograms.Add((IEnumerable<programModel>)existingDayProgram);
-                    }
-                    
-                    //var ListaProgramas =  await _programacionRepository.
-                }
-            }
-            return View(ListDayPrograms);
-        }
-        */
+        
         public async Task<IActionResult> Index(int? index)
         {
-            /*
-            var canales = await _canalRepository.GetAllAsync();
-            return View(canales);
             
-            var programacion = await _programacionRepository.ObtenerProgramacionActualAsync();
-            return View(programacion);
-            
-            var canales = await _programacionRepository.ObtenerCanalesConProgramacionActualAsync();
-            if (canales.Any())
-            {
-                return RedirectToAction("Canal", new { id = canales.First().Id, index = 0 });
-            }
-            return View("SinProgramacion");
-            */
 
             var canales = await _programacionRepository.ObtenerCanalesConProgramacionActualAsync();
             if (!canales.Any())
@@ -231,6 +180,21 @@ namespace PLAYOUT.Controllers
             var modelParcial = await _programacionService.ObtenerCanalesParaVista();
 
             var vidmus = new Borrar
+            {
+                musicalesbo = ListVidMus,
+                canalViewModels = modelParcial,
+                spots = listSpots//adicionado
+            };
+            return View(vidmus);
+
+        }
+        public async Task<IActionResult> tvcable()
+        {
+            var ListVidMus = await _musicalRepository.GetAllAsync();
+            var listSpots = await _spotRepository.GetAllAsync();//adicionado
+            var modelParcial = await _programacionService.ObtenerCanalesParaVista();
+
+            var vidmus = new GrillaCanalesModel
             {
                 musicalesbo = ListVidMus,
                 canalViewModels = modelParcial,

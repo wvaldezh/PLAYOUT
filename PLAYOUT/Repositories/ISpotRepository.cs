@@ -11,5 +11,6 @@ namespace PLAYOUT.Repositories
         Task<Spot?> UpdateAsync(Spot spot);
         Task<Spot?> UpdateOrdenAsync(Spot spot);
         Task<int> GetLenghtMaxOrderAsync();
+        Task EliminarSpotsVencidosAsync();
     }
 }

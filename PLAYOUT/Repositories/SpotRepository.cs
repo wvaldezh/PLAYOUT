@@ -8,9 +8,11 @@ namespace PLAYOUT.Repositories
     public class SpotRepository : ISpotRepository
     {
         private readonly PlayOutDbContext _playOutDbContext;
-        public SpotRepository(PlayOutDbContext playOutDbContext) 
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        public SpotRepository(PlayOutDbContext playOutDbContext, IWebHostEnvironment hostEnvironment) 
         { 
             _playOutDbContext = playOutDbContext;
+            _hostingEnvironment = hostEnvironment;
         } 
         public async  Task<Spot> AddAsync(Spot spot)
         {
@@ -24,7 +26,7 @@ namespace PLAYOUT.Repositories
             var existingSpot = await _playOutDbContext.Spots.FindAsync(id);
             if (existingSpot != null)
             {
-                _playOutDbContext.Spots.Remove(existingSpot);
+                 _playOutDbContext.Spots.Remove(existingSpot);
                 await _playOutDbContext.SaveChangesAsync();
 
                 return existingSpot;
@@ -33,11 +35,47 @@ namespace PLAYOUT.Repositories
             return null;
         }
 
+        public async  Task EliminarSpotsVencidosAsync()
+        {
+            // Obtener la fecha actual
+            DateTime fechaActual = DateTime.Now;
+
+            // Buscar los spots vencidos
+            var spotsVencidos = await _playOutDbContext.Spots
+                .Where(s => s.FechaSalida < fechaActual)
+                .ToListAsync();
+
+            if (spotsVencidos.Any())
+            {
+                foreach(var spot in spotsVencidos)
+                {
+                    // Elimina el archivo de video del servidor
+                    var filePath = Path.Combine(_hostingEnvironment.WebRootPath, spot.Direccion.TrimStart('/'));
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+
+                }
+                // Eliminar los spots vencidos en base de datos
+                _playOutDbContext.Spots.RemoveRange(spotsVencidos);
+
+                // Guardar los cambios en la base de datos
+                await _playOutDbContext.SaveChangesAsync();
+            }
+        }
+
         public async Task<List<Spot>> GetAllAsync()
         {
             return await _playOutDbContext.Spots.OrderBy(c => c.Orden).ToListAsync();
         }
-
+        /*
+        public  async Task<List<Spot>> GetAllExpiredAsync()
+        {
+            DateTime ahora = DateTime.Now;
+            return await _playOutDbContext.Spots.Where(p => p.FechaSalida < ahora).ToListAsync();
+        }
+        */
         public async  Task<Spot?> GetAsync(Guid id)
         {
             return await _playOutDbContext.Spots.FirstOrDefaultAsync(x => x.Id == id);

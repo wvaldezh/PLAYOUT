@@ -1,4 +1,4 @@
-﻿@model PLAYOUT.Models.ViewModels.Borrar
+﻿@model PLAYOUT.Models.ViewModels.GrillaCanalesModel
 <div id="texto"></div>
 <script>
     $(document).ready(function () {
@@ -17,7 +17,7 @@
         function cargarCanalActual() {
             if (canales.length > 0) {
 
-                window.location.href = '/Grilla/borrar6'; // Ruta a la vista de la guía de programación
+                window.location.href = '/Grilla/tvcable'; // Ruta a la vista de la guía de programación
             }
             else {
                 $.ajax({
