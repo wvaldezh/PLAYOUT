@@ -1,11 +1,3 @@
-C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.csproj.AssemblyReference.cache
-C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.AssemblyInfoInputs.cache
-C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.AssemblyInfo.cs
-C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.csproj.CoreCompileInputs.cache
-C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.RazorAssemblyInfo.cache
-C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.RazorAssemblyInfo.cs
 C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\bin\Debug\net7.0\appsettings.json
 C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\bin\Debug\net7.0\PLAYOUT.staticwebassets.runtime.json
@@ -58,6 +50,14 @@ C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\bin\Debug\net7.0\runtimes\win\lib\net
 C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.csproj.AssemblyReference.cache
+C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.AssemblyInfoInputs.cache
+C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.AssemblyInfo.cs
+C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.csproj.CoreCompileInputs.cache
+C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.RazorAssemblyInfo.cache
+C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\PLAYOUT.RazorAssemblyInfo.cs
 C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\staticwebassets\msbuild.PLAYOUT.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\staticwebassets\msbuild.build.PLAYOUT.props
 C:\Users\Cabe\source\repos\PLAYOUT\PLAYOUT\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.PLAYOUT.props

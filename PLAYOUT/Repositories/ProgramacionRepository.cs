@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PLAYOUT.Data;
 using PLAYOUT.Models.Domain;
+using PLAYOUT.Models.ViewModels;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -70,6 +71,26 @@ namespace PLAYOUT.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task DeleteDayAsync(List<Programacion> programaciones)
+        {
+            // funcionanando ok
+          _playOutDbContext.Programaciones.RemoveRange(programaciones);
+          _playOutDbContext.SaveChanges();
+        }
+
+        public Task<DayProgramRequest> EliminarProgramacionDiaAsync(DayProgramRequest dayProgramRequest)
+        {
+            var programaspararemover = dayProgramRequest.programacions;
+            if (programaspararemover != null)
+            {
+                _playOutDbContext.Programaciones.RemoveRange(programaspararemover);
+               // return programaspararemover;
+            }
+            return null;
+        }
+
+
 
         public Task<IEnumerable<Programacion>> GetAllAsync()
         {
@@ -143,6 +164,11 @@ namespace PLAYOUT.Repositories
                 .OrderBy(p => p.Hora)
                 .Take(5)
                 .ToListAsync();
+        }
+
+        public async  Task<List<Programacion>> ObtenerProgramasPorCanalDiaAsync(Guid[] ids)
+        {
+            return  _playOutDbContext.Programaciones.Where(p => ids.Contains(p.Id)).ToList();
         }
 
         public Task<Programacion?> UpdateAsync(Programacion programacion)

@@ -128,6 +128,119 @@ namespace PLAYOUT.Controllers
             return RedirectToAction(nameof(Index));
             */
         }
+        [HttpGet]
+        public async Task<IActionResult> UpdateOrder()
+        {
+            var DataMusicales = await _musicalRepository.GetAllAsync();
+
+            var newOrderMusicalRecuest = new NewOrderMusicalRecuest
+            {
+                musicales = DataMusicales
+
+            };
+            return View(newOrderMusicalRecuest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateOrder([FromBody] List<Guid> musicalesIds)
+        {
+            if (musicalesIds == null || !musicalesIds.Any())
+            {
+                return BadRequest("Invalid video order");
+            }
+
+
+            // Assuming videoIds is an ordered list of video IDs reflecting the new order
+            int order = 1;
+            foreach (var id in musicalesIds)
+            {
+                var musical = await _musicalRepository.GetAsync(id);
+                //var video = await _context.Videos.FindAsync(id);
+                if (musical != null)
+                {
+                    musical.Orden = order++;
+
+                }
+                await _musicalRepository.UpdateOrdenAsync(musical);
+            }
+
+
+            //await _canalRepository.
+
+            return Ok(new { message = "Order updated successfully" });
+            //return View();
+        }
+        public async Task<IActionResult> Edit(Guid Id)
+        {
+            var musicalrequest = await _musicalRepository.GetAsync(Id);
+            if (musicalrequest != null)
+            {
+                var model = new EditMusicalRequest
+                {
+                    Id = musicalrequest.Id,
+                    Titulo = musicalrequest.Titulo,
+                    Direccion = musicalrequest.Direccion,
+                    FechaSalida = musicalrequest.FechaSalida,
+                    Orden = musicalrequest.Orden
+                };
+                return View(model);
+            }
+            return View(null);
+        }
+        [RequestSizeLimit(1073741824)]
+        [HttpPost]
+        public async Task<IActionResult> Edit(IFormFile videoFile, EditMusicalRequest editMusicalRequest)
+        {
+            if (videoFile != null && videoFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Spots");
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + videoFile.FileName;
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                // Guarda el archivo en el servidor
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await videoFile.CopyToAsync(fileStream);
+                }
+                var musicalUrl = "/Musicales/" + uniqueFileName;
+                // var NumOrder = await _musicalRepository.GetLenghtMaxOrderAsync();
+                // Guarda los datos en la base de datos
+                var MusicalUpdate = new Musical
+                {
+                    Id = editMusicalRequest.Id,
+                    Titulo = editMusicalRequest.Titulo,
+                    Direccion = filePath,
+                    FechaSalida = editMusicalRequest.FechaSalida,
+                    Orden = editMusicalRequest.Orden
+
+                };
+                await _musicalRepository.UpdateAsync(MusicalUpdate);
+                // video.Id = Guid.NewGuid();
+                //  video.Url = "/videos/" + uniqueFileName;
+
+                // _context.Add(video);
+                // await _context.SaveChangesAsync();
+
+                return RedirectToAction("List");
+            }
+            
+            var Musicalmodificado = new Musical
+            {
+                Id = editMusicalRequest.Id,
+                Titulo = editMusicalRequest.Titulo,
+                Direccion = editMusicalRequest.Direccion,
+                FechaSalida = editMusicalRequest.FechaSalida,
+                Orden = editMusicalRequest.Orden
+
+            };
+            var Musicalactualizado = await _musicalRepository.UpdateAsync(Musicalmodificado);
+            if (Musicalactualizado != null)
+            {
+                return RedirectToAction("List");
+            }
+            
+            return RedirectToAction("Edit");
+            
+        }
 
 
 

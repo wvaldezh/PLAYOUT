@@ -55,19 +55,41 @@ namespace PLAYOUT.Repositories
             return NumOrder;
         }
 
-        public Task<Musical?> UpdateAsync(Musical musical)
+        public async Task<Musical?> UpdateAsync(Musical musical)
         {
-            throw new NotImplementedException();
+            var existingMusical = await _playOutDbContext.Musicales.FindAsync(musical.Id);
+            if (existingMusical != null)
+            {
+
+                existingMusical.Id = musical.Id;
+                existingMusical.Titulo = musical.Titulo;
+                existingMusical.Direccion = musical.Direccion;
+                //existingMusical.FechaEntrada = musical.FechaEntrada;
+                existingMusical.FechaSalida = musical.FechaSalida;
+                existingMusical.Orden = musical.Orden;
+                //await _bloggieDbContext.AddAsync(existingTag);
+                await _playOutDbContext.SaveChangesAsync();
+                return existingMusical;
+            }
+            return null;
         }
 
-        public Task<Musical?> UpdateOrdenAsync(Musical musical)
+        public async Task<Musical?> UpdateOrdenAsync(Musical musical)
         {
-            throw new NotImplementedException();
+            var existingMusical = await _playOutDbContext.Musicales.FindAsync(musical.Id);
+            if (existingMusical != null)
+            {
+
+                existingMusical.Orden = musical.Orden;
+                await _playOutDbContext.SaveChangesAsync();
+                return existingMusical;
+            }
+            return null;
         }
 
         public async Task<List<Musical>> GetAllAsync()
         {
-            return await _playOutDbContext.Musicales.ToListAsync();
+            return await _playOutDbContext.Musicales.OrderBy(c => c.Orden).ToListAsync();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PLAYOUT.Models.Domain;
 using PLAYOUT.Models.ViewModels;
 using PLAYOUT.Repositories;
@@ -165,17 +166,21 @@ namespace PLAYOUT.Controllers
                 };
                
                 return View(dayprograresult);
+                
+
 
             }
             
             // var model = dayProgramRequest;
             return View();
         }
+        /*
         [HttpPost]
         public async Task<IActionResult> dayProgramResult(DayProgramRequest dayProgramRequest)
         {
             return View();
         }
+        */
         [HttpGet]
      
         private List<RowModel> ParseMultilineData(string multilineData, DateOnly dateOnly)
@@ -218,6 +223,49 @@ namespace PLAYOUT.Controllers
             }
 
             return string.Join(Environment.NewLine, lines, 0, i + 1);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid[] ids)
+        {
+            if (ids == null || ids.Length == 0)
+            {
+                return BadRequest("No se recibieron IDs para eliminar.");
+            }
+
+            // Buscar los programas por los IDs y eliminarlos
+            var programasAEliminar = await _programacionRepository.ObtenerProgramasPorCanalDiaAsync(ids);
+            if (programasAEliminar.Any())
+            {
+                 _programacionRepository.DeleteDayAsync(programasAEliminar);
+               // _context.SaveChanges(); // Guardar los cambios en la base de datos
+            }
+
+            // Redirigir a otra acción, como el índice de la lista de programas
+            return RedirectToAction("verificarProgra");
+            /*
+            string serializedData = TempData["Datos"] as string;
+            var dayprogramrecover = JsonSerializer.Deserialize<programModel>(serializedData);
+
+
+            if (dayProgramRequest != null)
+            {
+                var dayprograDeletede = _programacionRepository.EliminarProgramacionDiaAsync(dayProgramRequest);
+                if (dayprograDeletede != null)
+                {
+                    return RedirectToAction("verificarProgra");
+                }
+
+                
+            }
+            */
+
+            //return RedirectToAction("verificarProgra");
+        }
+        [HttpGet]
+        public async Task<IActionResult> borrar1()
+
+        {
+            return View();
         }
     }
 }

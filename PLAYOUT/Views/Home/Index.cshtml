@@ -1,11 +1,328 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<div class="wrapper">
+    <div class="titulotvguia">
+        PLAYOUT - GUIA DE PROGRAMACION COMTECO
+    </div>
+    <div class="titulomenu">
+        MENU PRINCIPAL
 
-<div class="text-center">
-    <h1 class="display-4">Welcom jefe</h1>
+    </div>
+    <div class=" marcomenu">
+
+    </div>
+    <div class="menuprogramacion">
+
+     
+    </div>
+    <div class="tituloprogramacion">
+        PROGRAMACION &&  CANALES
+    </div>
+    <div class="insertarprogramacion">
+        <a href='/adminprogra/verificarProgra'>INSERTAR PROGRAMACION</a>
+    </div>
+    <div class="listarcanal">
+        <a href='/admincanal/list'>LISTAR CANALES</a>
+    </div>
+    <div class="ordenarcanal">
+        <a href='/admincanal/updateorder'>ORDENAR CANALES</a>
+    </div>
+    <div class="agregarcanal">
+        <a href='/admincanal/add'>AGREGAR CANAL</a>
+    </div>
+
+    <div class="menuspots">
+      
+    </div>
+    <div class="titulospots">
+        SPOTS
+    </div>
+            <div class="listarspots">
+        <a href='/adminspot/list'>LISTAR</a>
+            </div>
+            <div class="ordenarspots">
+        <a href='/adminspot/updateorder'>ORDENAR</a>
+            </div>
+            <div class="agregarspots">
+        <a href='/adminspot/add'>AGREGAR</a>
+            </div>
+       
+        <div class="menuvideosMusicales">
+    </div>
+    <div class="titulovideosmusicales">
+        VIDEOS MUSICALES
+    </div>
+            <div class="listarvideosMusicales">
+        <a href='/adminmusical/list'>LISTAR</a>
+            </div>
+            <div class="ordenarvideosMusicales">
+        <a href='/adminmusical/updateorder'>ORDENAR</a>
+            </div>
+            <div class="agregarvideosMusicales">
+        <a href='/adminmusical/add'>AGREGAR</a>
+            </div>
+    <div class="reproducirguia">                
+        <a href='/video/play' target="_blank">REPRODUCIR GUIA</a>
+    </div>
+        
+    
+ 
 </div>
 
-<div>
-    @await Html.PartialAsync("_parcial")
-</div>
+<style>
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        grid-gap: 2px;
+        grid-auto-rows: minmax(50px, 12fr);
+    }
+
+    .titulotvguia {
+        grid-column: 1 / 17;
+        grid-row: 1 / 3;
+        /* border: black 5px solid;*/
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        background-color: #020337;
+        color: white;
+    }
+
+    .titulomenu {
+        grid-column: 1 / 17;
+        grid-row: 3 / 4;
+        /* border: black 5px solid;*/
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        background-color: #08377b;
+        color: white;
+    }
+
+    .menuprincipal {
+        grid-column: 1 / 17;
+        grid-row: 4 / 13;
+        /* border: black 5px solid;*/
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        background-color: #0c0440;
+        color: white;
+    }
+
+    .marcomenu {
+        grid-column: 1 / 17;
+        grid-row: 4 / 14;
+        /* border: black 5px solid;*/
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #020337;
+        color: white;
+    }
+
+    .menuprogramacion {
+        grid-column: 2 / 5;
+        grid-row: 5 / 13;
+       /* display: grid;*/
+       /* grid-template-columns: repeat(4, 1fr);*/
+        grid-gap: 2px;
+        /*grid-auto-rows: minmax(30px, 10fr);*/
+        border: white 5px solid;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #08377b;
+        color: white;
+    }
+
+    
+    .tituloprogramacion {
+        grid-column:2 / 5;
+        grid-row: 5 / 7;
+        border: white 5px solid;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #045b1d;
+        color: white;
+    }
+
+    .insertarprogramacion {
+        grid-column: 2 / 4;
+        grid-row: 7 / 8 ; 
+        border: #f1f2a2 2px solid;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+    }
+
+    .listarcanal {
+        grid-column: 3 / 5;
+        grid-row: 8 / 9;
+        border: #f1f2a2 2px solid;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+    }
+
+    .ordenarcanal {
+        grid-column: 3 / 5;
+        grid-row: 10 / 11;
+        border: #f1f2a2 2px solid;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+    }
+
+    .agregarcanal {
+        grid-column: 3 / 5;
+        grid-row: 12 / 13;
+        border: #f1f2a2 2px solid;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+    }
+    
+    .menuspots {
+        grid-column: 6 / 9;
+        grid-row: 5 / 13;
+        /* display: grid;*/
+        /* grid-template-columns: repeat(4, 1fr);*/
+        grid-gap: 2px;
+        /*grid-auto-rows: minmax(30px, 10fr);*/
+        border: white 5px solid;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #08377b;
+        color: white;
+    }
+
+    .titulospots {
+        grid-column: 6 / 9;
+        grid-row: 5 / 7;
+        border: white 5px solid;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #320207;
+        color: white;
+    }
+
+    .listarspots {
+        grid-column: 7 / 9;
+        grid-row: 8 / 9;
+        border: #f1f2a2 2px solid;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+    }
+
+    .ordenarspots {
+        grid-column: 7 / 9;
+        grid-row: 10 / 11;
+        border: #f1f2a2 2px solid;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        background-color:black;
+        color: white;
+    }
+
+    .agregarspots {
+        grid-column: 7 / 9;
+        grid-row: 12 / 13;
+        border: #f1f2a2 2px solid;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+    }
+ 
+    .menuvideosMusicales {
+        grid-column: 10 / 13;
+        grid-row: 5 / 13;
+        /* display: grid;*/
+        /* grid-template-columns: repeat(4, 1fr);*/
+        grid-gap: 2px;
+        /*grid-auto-rows: minmax(30px, 10fr);*/
+        border: white 5px solid;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #08377b;
+        color: white;
+    }
+
+    .titulovideosmusicales {
+        grid-column: 10 / 13;
+        grid-row: 5 / 7;
+        border: white 5px solid;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #8b450b;
+        color: white;
+    }
+
+    .listarvideosMusicales {
+        grid-column: 11 / 13;
+        grid-row: 8 / 9;
+        border: #f1f2a2 2px solid;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+    }
+
+    .ordenarvideosMusicales {
+        grid-column: 11 / 13;
+        grid-row: 10 / 11;
+        border: #f1f2a2 2px solid;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+    }
+
+    .agregarvideosMusicales {
+        grid-column: 11 / 13;
+        grid-row: 12 / 13;
+        border: #f1f2a2 2px solid;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+    }
+
+    .reproducirguia {
+        grid-column: 14 / 17;
+        grid-row: 8 / 9;
+        /* display: grid;*/
+        /* grid-template-columns: repeat(4, 1fr);*/
+        grid-gap: 2px;
+        /*grid-auto-rows: minmax(30px, 10fr);*/
+        border: white 5px solid;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #08377b;
+        color: white;
+    }
+</style>

@@ -1,13 +1,19 @@
 ﻿@model PLAYOUT.Models.ViewModels.DayProgramRequest
 
 <div class="bg-secondary bg-opacity-10 py-5">
+    <div class="row justify-content-center">
+        <div class="col-4">
     <div class="container">
         <h1>Programacion</h1>
 
     </div>
+        </div>
+    </div>
 
 </div>
-<div class="container py-5">
+<div class="row justify-content-center">
+    <div class="col-4">
+<form asp-controller="AdminProgra" asp-action="Delete" method="post" enctype="multipart/form-data">
     <table class="table">
         <thead>
             <tr>
@@ -21,14 +27,10 @@
             {
                 <tr>
                     <td>@progra.Hora</td>
+                            <input type="hidden" name="ids" value="@progra.Id" />
                     <td>@progra.CanalName</td>
                     <td>@progra.Programa</td>
-                    <td>
-                        <a asp-area=""
-                           asp-controller="AdminBlogPosts"
-                           asp-action="Edit"
-                           asp-route-id="@progra.Id">Edit</a>
-                    </td>
+                 
                 </tr>
 
             }
@@ -36,4 +38,14 @@
 
     </table>
 
+    <button type="submit" class="btn btn-danger ms-2">Eliminar Todo</button>
+</form>
+        <div>
+            _
+        </div>
+
+        <div>
+            <button type="button" class="btn btn-primary" onclick="window.location.href='/AdminProgra/verificarProgra';">Volver al menu verificar</button>
+        </div>
+</div>
 </div>
